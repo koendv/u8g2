@@ -1389,6 +1389,171 @@ uint8_t *u8g2_m_80_40_f(uint8_t *page_cnt)
   return buf;
   #endif
 }
+uint8_t *u8g2_m_30_30_1(uint8_t *page_cnt)
+{
+  #ifdef U8G2_USE_DYNAMIC_ALLOC
+  *page_cnt = 1;
+  return 0;
+  #else
+  static uint8_t buf[240];
+  *page_cnt = 1;
+  return buf;
+  #endif
+}
+uint8_t *u8g2_m_30_30_2(uint8_t *page_cnt)
+{
+  #ifdef U8G2_USE_DYNAMIC_ALLOC
+  *page_cnt = 2;
+  return 0;
+  #else
+  static uint8_t buf[480];
+  *page_cnt = 2;
+  return buf;
+  #endif
+}
+uint8_t *u8g2_m_30_30_f(uint8_t *page_cnt)
+{
+  #ifdef U8G2_USE_DYNAMIC_ALLOC
+  *page_cnt = 30;
+  return 0;
+  #else
+  static uint8_t buf[7200];
+  *page_cnt = 30;
+  return buf;
+  #endif
+}
+uint8_t *u8g2_m_30_35_1(uint8_t *page_cnt)
+{
+  #ifdef U8G2_USE_DYNAMIC_ALLOC
+  *page_cnt = 1;
+  return 0;
+  #else
+  static uint8_t buf[240];
+  *page_cnt = 1;
+  return buf;
+  #endif
+}
+uint8_t *u8g2_m_30_35_2(uint8_t *page_cnt)
+{
+  #ifdef U8G2_USE_DYNAMIC_ALLOC
+  *page_cnt = 2;
+  return 0;
+  #else
+  static uint8_t buf[480];
+  *page_cnt = 2;
+  return buf;
+  #endif
+}
+uint8_t *u8g2_m_30_35_f(uint8_t *page_cnt)
+{
+  #ifdef U8G2_USE_DYNAMIC_ALLOC
+  *page_cnt = 35;
+  return 0;
+  #else
+  static uint8_t buf[8400];
+  *page_cnt = 35;
+  return buf;
+  #endif
+}
+uint8_t *u8g2_m_30_40_1(uint8_t *page_cnt)
+{
+  #ifdef U8G2_USE_DYNAMIC_ALLOC
+  *page_cnt = 1;
+  return 0;
+  #else
+  static uint8_t buf[240];
+  *page_cnt = 1;
+  return buf;
+  #endif
+}
+uint8_t *u8g2_m_30_40_2(uint8_t *page_cnt)
+{
+  #ifdef U8G2_USE_DYNAMIC_ALLOC
+  *page_cnt = 2;
+  return 0;
+  #else
+  static uint8_t buf[480];
+  *page_cnt = 2;
+  return buf;
+  #endif
+}
+uint8_t *u8g2_m_30_40_f(uint8_t *page_cnt)
+{
+  #ifdef U8G2_USE_DYNAMIC_ALLOC
+  *page_cnt = 40;
+  return 0;
+  #else
+  static uint8_t buf[9600];
+  *page_cnt = 40;
+  return buf;
+  #endif
+}
+uint8_t *u8g2_m_17_30_1(uint8_t *page_cnt)
+{
+  #ifdef U8G2_USE_DYNAMIC_ALLOC
+  *page_cnt = 1;
+  return 0;
+  #else
+  static uint8_t buf[136];
+  *page_cnt = 1;
+  return buf;
+  #endif
+}
+uint8_t *u8g2_m_17_30_2(uint8_t *page_cnt)
+{
+  #ifdef U8G2_USE_DYNAMIC_ALLOC
+  *page_cnt = 2;
+  return 0;
+  #else
+  static uint8_t buf[272];
+  *page_cnt = 2;
+  return buf;
+  #endif
+}
+uint8_t *u8g2_m_17_30_f(uint8_t *page_cnt)
+{
+  #ifdef U8G2_USE_DYNAMIC_ALLOC
+  *page_cnt = 30;
+  return 0;
+  #else
+  static uint8_t buf[4080];
+  *page_cnt = 30;
+  return buf;
+  #endif
+}
+uint8_t *u8g2_m_22_40_1(uint8_t *page_cnt)
+{
+  #ifdef U8G2_USE_DYNAMIC_ALLOC
+  *page_cnt = 1;
+  return 0;
+  #else
+  static uint8_t buf[176];
+  *page_cnt = 1;
+  return buf;
+  #endif
+}
+uint8_t *u8g2_m_22_40_2(uint8_t *page_cnt)
+{
+  #ifdef U8G2_USE_DYNAMIC_ALLOC
+  *page_cnt = 2;
+  return 0;
+  #else
+  static uint8_t buf[352];
+  *page_cnt = 2;
+  return buf;
+  #endif
+}
+uint8_t *u8g2_m_22_40_f(uint8_t *page_cnt)
+{
+  #ifdef U8G2_USE_DYNAMIC_ALLOC
+  *page_cnt = 40;
+  return 0;
+  #else
+  static uint8_t buf[7040];
+  *page_cnt = 40;
+  return buf;
+  #endif
+}
 uint8_t *u8g2_m_20_8_1(uint8_t *page_cnt)
 {
   #ifdef U8G2_USE_DYNAMIC_ALLOC

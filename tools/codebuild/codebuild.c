@@ -1465,7 +1465,58 @@ struct controller controller_list[] =
       { "640x320" },
       { NULL }
     }
-  },  
+  },
+
+  {
+    "st7789", 	30, 	30, 	"u8g2_ll_hvline_vertical_top_lsb", "u8x8_cad_011", "", COM_4WSPI|COM_3WSPI|COM_8080,
+    "", /* is_generate_u8g2_class= */ 1,
+    {
+      { "240x240" },
+      { NULL }
+    }
+  },
+  {
+    "st7789", 	30, 	35, 	"u8g2_ll_hvline_vertical_top_lsb", "u8x8_cad_011", "", COM_4WSPI|COM_3WSPI|COM_8080,
+    "", /* is_generate_u8g2_class= */ 1,
+    {
+      { "240x280" },
+      { NULL }
+    }
+  },
+  {
+    "st7789", 	30, 	40, 	"u8g2_ll_hvline_vertical_top_lsb", "u8x8_cad_011", "", COM_4WSPI|COM_3WSPI|COM_8080,
+    "", /* is_generate_u8g2_class= */ 1,
+    {
+      { "240x320" },
+      { NULL }
+    }
+  },
+  {
+    "st7789", 	17, 	30, 	"u8g2_ll_hvline_vertical_top_lsb", "u8x8_cad_011", "", COM_4WSPI|COM_3WSPI|COM_8080,
+    "", /* is_generate_u8g2_class= */ 1,
+    {
+      { "135x240" },
+      { NULL }
+    }
+  },
+  {
+    "st7789", 	22, 	40, 	"u8g2_ll_hvline_vertical_top_lsb", "u8x8_cad_011", "", COM_4WSPI|COM_3WSPI|COM_8080,
+    "", /* is_generate_u8g2_class= */ 1,
+    {
+      { "172x320" },
+      { "170x320" },
+      { NULL }
+    }
+  },
+
+  {
+    "ili9341", 	30, 	40, 	"u8g2_ll_hvline_vertical_top_lsb", "u8x8_cad_011", "", COM_4WSPI|COM_3WSPI|COM_8080,
+    "", /* is_generate_u8g2_class= */ 1,
+    {
+      { "240x320" },
+      { NULL }
+    }
+  },
 
   {
     "st7528", 		20, 	13, 	"u8g2_ll_hvline_vertical_top_lsb", "u8x8_cad_001", "", COM_4WSPI|COM_6800|COM_8080,

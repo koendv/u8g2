@@ -96,6 +96,8 @@
 /* Define this for an additional user pointer inside the u8x8 data struct */
 //#define U8X8_WITH_USER_PTR
 
+/* Define this for color lcds: st7789, ili9341 */
+//#define U8X8_WITH_CLUT
 
 /* Undefine this to remove u8x8_SetFlipMode function */
 /* 26 May 2016: Obsolete */
@@ -117,7 +119,11 @@
 
 #if defined(__GNUC__) && defined(__AVR__)
 #include <avr/pgmspace.h>
-#endif 
+#endif
+
+#ifdef U8X8_WITH_CLUT
+#include "u8x8_clut.h"
+#endif
 
 /*==========================================*/
 /* C++ compatible */
@@ -287,7 +293,7 @@ struct u8x8_display_info_struct
 
   uint8_t default_x_offset;		/* default x offset for the display */
   uint8_t flipmode_x_offset;	/* x offset, if flip mode is enabled */
- 
+
  /* pixel width is not used by the u8x8 procedures */
  /* instead it will be used by the u8g2 procedures, because the pixel dimension can */
  /* not always be calculated from the tile_width/_height */
@@ -363,6 +369,11 @@ struct u8x8_struct
   uint8_t debounce_last_pin_state;
   uint8_t debounce_state;
   uint8_t debounce_result_msg;	/* result msg or event after debounce */
+#ifdef U8X8_WITH_CLUT
+  clut_t clut;			/* color lookup table: 16 entries, [idx][0]=foreground, [idx][1]=background, native rgb444 or rgb565 */
+  uint8_t clut_native_bpp;	/* native bit depth of clut entries: U8X8_CLUT_NATIVE_RGB444 or U8X8_CLUT_NATIVE_RGB565 */
+  uint8_t *tile_clut_map;	/* optional per-tile clut index map, size via u8x8_clut_map_size(), NULL if unused */
+#endif
 #ifdef U8X8_WITH_USER_PTR
   void *user_ptr;
 #endif
@@ -960,6 +971,13 @@ uint8_t u8x8_d_st75256_jlx19296(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void
 uint8_t u8x8_d_st75256_jlx16080(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr);
 uint8_t u8x8_d_st75320_jlx320240(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr);	/* https://github.com/olikraus/u8g2/issues/921 */
 uint8_t u8x8_d_nt7534_tg12864r(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr); /* u8x8_d_st7565.c */
+uint8_t u8x8_d_st7789_240x240(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr); /* requires U8X8_WITH_CLUT */
+uint8_t u8x8_d_st7789_240x280(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr); /* requires U8X8_WITH_CLUT */
+uint8_t u8x8_d_st7789_240x320(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr); /* requires U8X8_WITH_CLUT */
+uint8_t u8x8_d_st7789_135x240(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr); /* requires U8X8_WITH_CLUT */
+uint8_t u8x8_d_st7789_172x320(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr); /* requires U8X8_WITH_CLUT */
+uint8_t u8x8_d_st7789_170x320(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr); /* requires U8X8_WITH_CLUT */
+uint8_t u8x8_d_ili9341_240x320(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr); /* requires U8X8_WITH_CLUT */
 uint8_t u8x8_d_ld7032_60x32(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr);
 uint8_t u8x8_d_ld7032_60x32_alt(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr);
 uint8_t u8x8_d_ld7032_128x36(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr);

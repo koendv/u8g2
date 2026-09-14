@@ -594,6 +594,21 @@ uint8_t *u8g2_m_40_30_f(uint8_t *page_cnt);
 uint8_t *u8g2_m_80_40_1(uint8_t *page_cnt);
 uint8_t *u8g2_m_80_40_2(uint8_t *page_cnt);
 uint8_t *u8g2_m_80_40_f(uint8_t *page_cnt);
+uint8_t *u8g2_m_30_30_1(uint8_t *page_cnt);
+uint8_t *u8g2_m_30_30_2(uint8_t *page_cnt);
+uint8_t *u8g2_m_30_30_f(uint8_t *page_cnt);
+uint8_t *u8g2_m_30_35_1(uint8_t *page_cnt);
+uint8_t *u8g2_m_30_35_2(uint8_t *page_cnt);
+uint8_t *u8g2_m_30_35_f(uint8_t *page_cnt);
+uint8_t *u8g2_m_30_40_1(uint8_t *page_cnt);
+uint8_t *u8g2_m_30_40_2(uint8_t *page_cnt);
+uint8_t *u8g2_m_30_40_f(uint8_t *page_cnt);
+uint8_t *u8g2_m_17_30_1(uint8_t *page_cnt);
+uint8_t *u8g2_m_17_30_2(uint8_t *page_cnt);
+uint8_t *u8g2_m_17_30_f(uint8_t *page_cnt);
+uint8_t *u8g2_m_22_40_1(uint8_t *page_cnt);
+uint8_t *u8g2_m_22_40_2(uint8_t *page_cnt);
+uint8_t *u8g2_m_22_40_f(uint8_t *page_cnt);
 uint8_t *u8g2_m_20_8_1(uint8_t *page_cnt);
 uint8_t *u8g2_m_20_8_2(uint8_t *page_cnt);
 uint8_t *u8g2_m_20_8_f(uint8_t *page_cnt);
@@ -1289,6 +1304,27 @@ void u8g2_Setup_st7511_avd_320x240_f(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8
 void u8g2_Setup_st7511_640x320_1(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
 void u8g2_Setup_st7511_640x320_2(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
 void u8g2_Setup_st7511_640x320_f(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
+void u8g2_Setup_st7789_240x240_1(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
+void u8g2_Setup_st7789_240x240_2(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
+void u8g2_Setup_st7789_240x240_f(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
+void u8g2_Setup_st7789_240x280_1(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
+void u8g2_Setup_st7789_240x280_2(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
+void u8g2_Setup_st7789_240x280_f(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
+void u8g2_Setup_st7789_240x320_1(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
+void u8g2_Setup_st7789_240x320_2(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
+void u8g2_Setup_st7789_240x320_f(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
+void u8g2_Setup_st7789_135x240_1(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
+void u8g2_Setup_st7789_135x240_2(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
+void u8g2_Setup_st7789_135x240_f(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
+void u8g2_Setup_st7789_172x320_1(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
+void u8g2_Setup_st7789_170x320_1(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
+void u8g2_Setup_st7789_172x320_2(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
+void u8g2_Setup_st7789_170x320_2(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
+void u8g2_Setup_st7789_172x320_f(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
+void u8g2_Setup_st7789_170x320_f(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
+void u8g2_Setup_ili9341_240x320_1(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
+void u8g2_Setup_ili9341_240x320_2(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
+void u8g2_Setup_ili9341_240x320_f(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
 void u8g2_Setup_st7528_nhd_c160100_1(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
 void u8g2_Setup_st7528_nhd_c160100_2(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
 void u8g2_Setup_st7528_nhd_c160100_f(u8g2_t *u8g2, const u8g2_cb_t *rotation, u8x8_msg_cb byte_cb, u8x8_msg_cb gpio_and_delay_cb);
@@ -2073,8 +2109,22 @@ void u8g2_SetupLinuxFb(u8g2_t *u8g2, const u8g2_cb_t *u8g2_cb, const char *fb_de
 /* 96x32 stdout */
 void u8g2_SetupBuffer_Utf8(u8g2_t *u8g2, const u8g2_cb_t *u8g2_cb);
 
+#ifdef U8X8_WITH_CLUT
 
+/*==========================================*/
+/* u8x8_clut.c */
+/* clut - color lookup table */
 
+/* set clut entry 'idx'. fg and bg are 24-bit rgb888 */
+void u8g2_SetClutColor(u8g2_t *u8g2, uint8_t idx, uint32_t fg, uint32_t bg);
+
+/* set color index of tw by th tiles, beginning at tile (tx, ty) */
+void u8g2_SetClutRegion(u8g2_t *u8g2, uint8_t tx, uint8_t ty, uint8_t tw, uint8_t th, uint8_t idx);
+
+/* set tile color map. tile color map is uint8_t[u8x8_clut_map_size(pixel_width, pixel_height)] */
+void u8g2_SetClutMap(u8g2_t *u8g2, uint8_t *map);
+
+#endif /* U8X8_WITH_CLUT */
 
 /*==========================================*/
 /* itoa procedures */
