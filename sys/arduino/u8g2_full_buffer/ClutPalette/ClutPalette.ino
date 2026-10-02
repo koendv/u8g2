@@ -22,7 +22,7 @@
 #define PIN_BL 26
 #define PIN_SCK 18
 #define PIN_MOSI 23
-#define SPI_FREQ 150000
+#define SPI_FREQ 1500000
 
 // Uncomment exactly one of the four lines below.
 U8G2_ST7789_240X280_F_4W_HW_SPI u8g2(U8G2_R0, /*cs=*/ PIN_CS, /*dc=*/ PIN_DC, /*reset=*/ PIN_RESET);

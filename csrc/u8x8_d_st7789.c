@@ -11,8 +11,13 @@ static const uint8_t u8x8_d_st7789_init_seq[] = {
   U8X8_START_TRANSFER(),
   U8X8_C(0x001),           /* software reset */
   U8X8_DLY(150),
+  U8X8_END_TRANSFER(),
+  U8X8_DLY(10),
+  U8X8_START_TRANSFER(),
   U8X8_C(0x011),           /* sleep out */
-  U8X8_DLY(120),
+  U8X8_END_TRANSFER(),
+  U8X8_DLY(10),            /* cs off during sleep out */
+  U8X8_START_TRANSFER(),
   U8X8_CA(0x03A, 0x003),   /* COLMOD: 12 bit/pixel (RGB444) */
   U8X8_DLY(10),
   U8X8_CA(0x036, U8X8_D_ST7789_MADCTL), /* MADCTL: fixed orientation, RGB order */
@@ -37,8 +42,8 @@ static const uint8_t u8x8_d_st7789_sleep_on_seq[] = {
 static const uint8_t u8x8_d_st7789_sleep_off_seq[] = {
   U8X8_START_TRANSFER(),
   U8X8_C(0x011),           /* sleep out */
-  U8X8_DLY(120),           /* wait 120ms after sleep before further commands */
   U8X8_END_TRANSFER(),
+  U8X8_DLY(120),           /* wait 120ms after sleep out before a later sleep in */
   U8X8_END()
 };
 
