@@ -2124,6 +2124,10 @@ void u8g2_SetClutRegion(u8g2_t *u8g2, uint8_t tx, uint8_t ty, uint8_t tw, uint8_
 /* set tile color map. tile color map is uint8_t[u8x8_clut_map_size(pixel_width, pixel_height)] */
 void u8g2_SetClutMap(u8g2_t *u8g2, uint8_t *map);
 
+/* u8x8_clut_ppm.c */
+/* write buffer as plain ppm (P3), colors as shown on the display. analogous to u8g2_WriteBufferPBM() */
+void u8g2_WriteBufferPPM(u8g2_t *u8g2, void (*out)(const char *s));
+
 #endif /* U8X8_WITH_CLUT */
 
 /*==========================================*/
