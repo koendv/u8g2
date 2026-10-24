@@ -1,0 +1,52 @@
+# u8g2 displays compiled into the firmware.
+# One u8g2 setup name per line, as in u8g2_Setup_<name>_f(), see
+# https://github.com/olikraus/u8g2/wiki/u8g2setupc
+# Each display adds its driver and init sequence to the firmware.
+# After editing, run make in this directory.
+
+# color lcd, 1 bit per pixel through a color lookup table
+st7789_240x240
+st7789_240x240_rot
+st7789_240x280
+st7789_240x280_rot
+st7789_240x320
+st7789_240x320_rot
+st7789_135x240
+st7789_135x240_rot
+st7789_172x320
+st7789_172x320_rot
+st7789_170x320
+st7789_170x320_rot
+ili9341_240x320
+ili9341_240x320_rot
+gc9a01_240x240
+gc9a01_240x240_adafruit
+gc9a01_240x240_rot
+gc9a01_240x240_adafruit_rot
+
+# monochrome oled, i2c
+ssd1306_i2c_128x64_noname
+ssd1306_i2c_128x32_univision
+ssd1306_i2c_72x40_er
+ssd1306_i2c_64x48_er
+ssd1306_i2c_64x32_noname
+sh1106_i2c_128x64_noname
+sh1107_i2c_64x128
+sh1107_i2c_128x128
+ssd1309_i2c_128x64_noname2
+ssd1315_i2c_128x64_noname
+ssd1327_i2c_ws_128x128
+
+# monochrome oled, spi
+ssd1306_128x64_noname
+sh1106_128x64_noname
+ssd1309_128x64_noname2
+ssd1322_nhd_256x64
+ssd1327_ws_128x128
+
+# monochrome lcd, spi
+st7920_s_128x64
+st7567_jlx12864
+st7565_erc12864
+uc1701_mini12864
+pcd8544_84x48
