@@ -1,0 +1,8 @@
+# u8g2 displays compiled into the firmware of this board.
+# One u8g2 setup name per line, as in u8g2_Setup_<name>_f().
+# All names: python3 ../../u8g2/tools/gen_u8g2.py --list
+# Each display adds its driver and init sequence to the firmware.
+
+# round GC9A01 240x240, and rotated 90 degrees
+gc9a01_240x240
+gc9a01_240x240_rot

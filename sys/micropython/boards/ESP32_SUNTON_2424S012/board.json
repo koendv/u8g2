@@ -1,0 +1,19 @@
+{
+    "deploy": [
+        "../deploy.md"
+    ],
+    "deploy_options": {
+        "flash_offset": "0"
+    },
+    "docs": "",
+    "features": [
+        "BLE",
+        "WiFi"
+    ],
+    "images": [],
+    "mcu": "esp32c3",
+    "product": "Sunton ESP32-2424S012",
+    "thumbnail": "",
+    "url": "",
+    "vendor": "Sunton"
+}

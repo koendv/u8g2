@@ -1,0 +1,8 @@
+# u8g2 displays compiled into the firmware of this board.
+# One u8g2 setup name per line, as in u8g2_Setup_<name>_f().
+# All names: python3 ../../u8g2/tools/gen_u8g2.py --list
+# Each display adds its driver and init sequence to the firmware.
+
+# ST7789V2 240x280, and rotated 90 degrees
+st7789_240x280
+st7789_240x280_rot

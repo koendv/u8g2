@@ -1,0 +1,15 @@
+# u8g2 fonts compiled into the firmware of this board.
+# One font name per line, without the u8g2_font_ prefix.
+# The first font is the font after u8g2.init().
+# Check the frozen demos in manifest.py before removing a font.
+
+# ProFont, monospace, Latin-1: 6x12, 8x15, 9x17, 11x22 pixel cells
+# status line, labels (12), body text (15), menus (17), titles (22)
+profont12_tf    # default font
+profont15_tf    # demo_graphics
+profont17_tf    # demo_clock, demo_graphics, demo_mui
+profont22_tf    # demo_clock, demo_mui, demo_settings
+
+# digits only, large numerals for smartwatches: values (42), watch time (78)
+logisoso42_tn
+logisoso78_tn

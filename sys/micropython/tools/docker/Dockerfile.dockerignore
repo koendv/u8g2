@@ -1,0 +1,14 @@
+# Build context of the firmware Dockerfile: the top of the u8g2 tree.
+# Only what the firmware and the Arduino library use; the rest of u8g2 (tools/font, doc, ...) is 300 MB.
+*
+!csrc
+!cppsrc
+!tools/codebuild
+!tools/release
+!tools/font/build/keywords.txt
+!sys/micropython
+!sys/arduino
+!ChangeLog
+!LICENSE
+**/__pycache__
+tools/codebuild/codebuild

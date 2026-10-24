@@ -3631,9 +3631,104 @@ void do_md_controller_list(void)
   }
 }
 
+/*===========================================*/
+/*
+  codebuild -l
+  Lists the u8g2 setup names the micropython port can use, one per line, in the
+  order of controller_list, e.g. ssd1306_i2c_128x64_noname for
+  u8g2_Setup_ssd1306_i2c_128x64_noname_f(). Same format as the input of -t.
+  Displays with only a parallel interface are left out: the port needs
+  4-wire spi, st7920 spi or i2c. No files are written.
+*/
 
-int main(void)
+int do_list(void)
 {
+  char name[300];
+  int controller_idx, display_idx;
+
+  for( controller_idx = 0; controller_idx < sizeof(controller_list)/sizeof(*controller_list); controller_idx++ )
+  {
+    if ( (controller_list[controller_idx].com & (COM_4WSPI|COM_ST7920SPI|COM_I2C)) == 0 )
+      continue;
+    for( display_idx = 0; controller_list[controller_idx].display_list[display_idx].name != NULL; display_idx++ )
+    {
+      strcpy(name, get_setup_function_name(controller_idx, display_idx, "f") + strlen("u8g2_Setup_"));
+      name[strlen(name) - strlen("_f")] = '\0';
+      puts(name);
+    }
+  }
+  return 0;
+}
+
+/*===========================================*/
+/*
+  codebuild -t
+  Reads u8g2 setup names from stdin, one per line, e.g. ssd1306_i2c_128x64_noname
+  for u8g2_Setup_ssd1306_i2c_128x64_noname_f(). Empty lines and text after '#'
+  are ignored. Writes one line per setup name to stdout:
+    D(SETUP_NAME, display procedure, cad procedure, ll_hvline procedure, tile_width, tile_height, com)
+  com is the COM_xxx interface mask. No files are written.
+  Returns 0, or 1 if a setup name is unknown.
+*/
+
+int do_table(void)
+{
+  char line[256];
+  char setup_name[300];
+  char *s, *e;
+  int controller_idx, display_idx, is_found, i, err = 0;
+
+  while( fgets(line, sizeof(line), stdin) != NULL )
+  {
+    s = strchr(line, '#');
+    if ( s != NULL )
+      *s = '\0';
+    s = line;
+    while( isspace((unsigned char)*s) )
+      s++;
+    e = s + strlen(s);
+    while( e > s && isspace((unsigned char)e[-1]) )
+      *--e = '\0';
+    if ( *s == '\0' )
+      continue;
+    sprintf(setup_name, "u8g2_Setup_%s_f", s);
+
+    is_found = 0;
+    for( controller_idx = 0; controller_idx < sizeof(controller_list)/sizeof(*controller_list) && !is_found; controller_idx++ )
+    {
+      for( display_idx = 0; controller_list[controller_idx].display_list[display_idx].name != NULL; display_idx++ )
+      {
+        if ( strcmp(get_setup_function_name(controller_idx, display_idx, "f"), setup_name) != 0 )
+          continue;
+        is_found = 1;
+        printf("D(");
+        for( i = 0; s[i] != '\0'; i++ )
+          putchar(toupper((unsigned char)s[i]));
+        printf(", u8x8_d_%s_", strlowercase(controller_list[controller_idx].name));
+        printf("%s, ", strlowercase(controller_list[controller_idx].display_list[display_idx].name));
+        printf("%s, %s, ", controller_list[controller_idx].cad, controller_list[controller_idx].ll_hvline);
+        printf("%d, %d, ", controller_list[controller_idx].tile_width, controller_list[controller_idx].tile_height);
+        printf("0x%04x)\n", controller_list[controller_idx].com);
+        break;
+      }
+    }
+    if ( !is_found )
+    {
+      fprintf(stderr, "codebuild -t: unknown setup name '%s'\n", s);
+      err = 1;
+    }
+  }
+  return err;
+}
+
+
+int main(int argc, char **argv)
+{
+  if ( argc == 2 && strcmp(argv[1], "-t") == 0 )
+    return do_table();
+  if ( argc == 2 && strcmp(argv[1], "-l") == 0 )
+    return do_list();
+
   buf_code_fp = fopen("u8g2_d_memory.c", "w");
   fprintf(buf_code_fp, "/* u8g2_d_memory.c */\n");
   fprintf(buf_code_fp, "/* generated code, codebuild, u8g2 project */\n");
