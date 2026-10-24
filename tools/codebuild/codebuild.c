@@ -1465,7 +1465,116 @@ struct controller controller_list[] =
       { "640x320" },
       { NULL }
     }
-  },  
+  },
+
+  {
+    "st7789", 	30, 	30, 	"u8g2_ll_hvline_vertical_top_lsb", "u8x8_cad_011", "", COM_4WSPI|COM_3WSPI|COM_8080,
+    "", /* is_generate_u8g2_class= */ 1,
+    {
+      { "240x240" },
+      { "240x240_rot" },
+      { NULL }
+    }
+  },
+  {
+    "st7789", 	30, 	35, 	"u8g2_ll_hvline_vertical_top_lsb", "u8x8_cad_011", "", COM_4WSPI|COM_3WSPI|COM_8080,
+    "", /* is_generate_u8g2_class= */ 1,
+    {
+      { "240x280" },
+      { NULL }
+    }
+  },
+  {
+    /* 240x280 panel rotated 90 degrees: 280x240, MADCTL MV */
+    "st7789", 	35, 	30, 	"u8g2_ll_hvline_vertical_top_lsb", "u8x8_cad_011", "", COM_4WSPI|COM_3WSPI|COM_8080,
+    "", /* is_generate_u8g2_class= */ 1,
+    {
+      { "240x280_rot" },
+      { NULL }
+    }
+  },
+  {
+    "st7789", 	30, 	40, 	"u8g2_ll_hvline_vertical_top_lsb", "u8x8_cad_011", "", COM_4WSPI|COM_3WSPI|COM_8080,
+    "", /* is_generate_u8g2_class= */ 1,
+    {
+      { "240x320" },
+      { NULL }
+    }
+  },
+  {
+    /* 240x320 panel rotated 90 degrees: 320x240, MADCTL MV */
+    "st7789", 	40, 	30, 	"u8g2_ll_hvline_vertical_top_lsb", "u8x8_cad_011", "", COM_4WSPI|COM_3WSPI|COM_8080,
+    "", /* is_generate_u8g2_class= */ 1,
+    {
+      { "240x320_rot" },
+      { NULL }
+    }
+  },
+  {
+    "st7789", 	17, 	30, 	"u8g2_ll_hvline_vertical_top_lsb", "u8x8_cad_011", "", COM_4WSPI|COM_3WSPI|COM_8080,
+    "", /* is_generate_u8g2_class= */ 1,
+    {
+      { "135x240" },
+      { NULL }
+    }
+  },
+  {
+    /* 135x240 panel rotated 90 degrees: 240x135, MADCTL MV */
+    "st7789", 	30, 	17, 	"u8g2_ll_hvline_vertical_top_lsb", "u8x8_cad_011", "", COM_4WSPI|COM_3WSPI|COM_8080,
+    "", /* is_generate_u8g2_class= */ 1,
+    {
+      { "135x240_rot" },
+      { NULL }
+    }
+  },
+  {
+    "st7789", 	22, 	40, 	"u8g2_ll_hvline_vertical_top_lsb", "u8x8_cad_011", "", COM_4WSPI|COM_3WSPI|COM_8080,
+    "", /* is_generate_u8g2_class= */ 1,
+    {
+      { "172x320" },
+      { "170x320" },
+      { NULL }
+    }
+  },
+  {
+    /* 172x320 and 170x320 panels rotated 90 degrees: 320x172 and 320x170, MADCTL MV */
+    "st7789", 	40, 	22, 	"u8g2_ll_hvline_vertical_top_lsb", "u8x8_cad_011", "", COM_4WSPI|COM_3WSPI|COM_8080,
+    "", /* is_generate_u8g2_class= */ 1,
+    {
+      { "172x320_rot" },
+      { "170x320_rot" },
+      { NULL }
+    }
+  },
+
+  {
+    "ili9341", 	30, 	40, 	"u8g2_ll_hvline_vertical_top_lsb", "u8x8_cad_011", "", COM_4WSPI|COM_3WSPI|COM_8080,
+    "", /* is_generate_u8g2_class= */ 1,
+    {
+      { "240x320" },
+      { NULL }
+    }
+  },
+  {
+    /* 240x320 panel rotated 90 degrees: 320x240, MADCTL MV */
+    "ili9341", 	40, 	30, 	"u8g2_ll_hvline_vertical_top_lsb", "u8x8_cad_011", "", COM_4WSPI|COM_3WSPI|COM_8080,
+    "", /* is_generate_u8g2_class= */ 1,
+    {
+      { "240x320_rot" },
+      { NULL }
+    }
+  },
+  {
+    "gc9a01", 	30, 	30, 	"u8g2_ll_hvline_vertical_top_lsb", "u8x8_cad_011", "", COM_4WSPI|COM_3WSPI|COM_8080,
+    "", /* is_generate_u8g2_class= */ 1,
+    {
+      { "240x240" },
+      { "240x240_adafruit" },
+      { "240x240_rot" },
+      { "240x240_adafruit_rot" },
+      { NULL }
+    }
+  },
 
   {
     "st7528", 		20, 	13, 	"u8g2_ll_hvline_vertical_top_lsb", "u8x8_cad_001", "", COM_4WSPI|COM_6800|COM_8080,
