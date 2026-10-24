@@ -53,7 +53,7 @@ cp ../../../sys/arduino/u8g2_page_buffer/Chinese/*.ino ../../../../U8g2_Arduino/
 mkdir ../../../../U8g2_Arduino/examples/page_buffer/Shennong
 cp ../../../sys/arduino/u8g2_page_buffer/Shennong/*.ino ../../../../U8g2_Arduino/examples/page_buffer/Shennong/.
 
-mkdir ../../../../U8g2_Arduino/examples/page_buffer/Shennong
+mkdir ../../../../U8g2_Arduino/examples/full_buffer/Shennong
 cp ../../../sys/arduino/u8g2_full_buffer/Shennong/*.ino ../../../../U8g2_Arduino/examples/full_buffer/Shennong/.
 
 mkdir ../../../../U8g2_Arduino/examples/page_buffer/Japanese
@@ -202,6 +202,13 @@ cp ../../../sys/arduino/u8g2_full_buffer/FPS/*.ino ../../../../U8g2_Arduino/exam
 
 mkdir ../../../../U8g2_Arduino/examples/full_buffer/ScreenShot
 cp ../../../sys/arduino/u8g2_full_buffer/ScreenShot/*.ino ../../../../U8g2_Arduino/examples/full_buffer/ScreenShot/.
+
+for SKETCH in ClutClock ClutColor ClutFlash ClutPalette
+do
+  mkdir ../../../../U8g2_Arduino/examples/full_buffer/$SKETCH
+  cp ../../../sys/arduino/u8g2_full_buffer/$SKETCH/$SKETCH.ino ../../../../U8g2_Arduino/examples/full_buffer/$SKETCH/.
+  cp ../../../sys/arduino/u8g2_full_buffer/$SKETCH/build_opt.h ../../../../U8g2_Arduino/examples/full_buffer/$SKETCH/.
+done
 
 # u8x8
 
