@@ -13,9 +13,9 @@
     ILI9341 : RGB565 (16bpp)
   Same RGB888 input quantizes differently on each panel.
 
-  Default palette is VGA/CGA 16-color, installed by
-  u8x8_clut_set_default_palette() during display setup.
-  Labels below are hardcoded for that palette.
+  Palette is VGA/CGA 16-color, set in the color lookup table by
+  u8g2_SetClutDefaultColors(). Without a table the display is
+  white on black. Labels below are hardcoded for that palette.
 
   Drawn once in setup(). loop() idles.
 
@@ -73,6 +73,9 @@ void setup(void) {
   // must be assigned before the first draw call below.
   static uint8_t tile_clut_map[u8x8_clut_map_size(240, 320)];
   u8g2_SetClutMap(u8g2.getU8g2(), tile_clut_map);
+  static clut_t clut;  // color lookup table in RAM
+  u8g2_SetClutTable(u8g2.getU8g2(), clut);
+  u8g2_SetClutDefaultColors(u8g2.getU8g2());
   u8g2.setBusClock(SPI_FREQ);
 
   u8g2.begin();

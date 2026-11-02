@@ -162,7 +162,9 @@ void setup(void) {
   analogWrite(PIN_BL, 128);  // 50%
 
   static uint8_t tile_clut_map[u8x8_clut_map_size(PIXEL_WIDTH, PIXEL_HEIGHT)];
+  static clut_t clut;  // color lookup table in RAM: without a table, white on black
   u8g2_SetClutMap(u8g2.getU8g2(), tile_clut_map);
+  u8g2_SetClutTable(u8g2.getU8g2(), clut);
   u8g2.setBusClock(SPI_FREQ);
 
   /* initialize CLUT */

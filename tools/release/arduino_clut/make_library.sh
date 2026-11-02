@@ -117,6 +117,17 @@ Remove the official U8g2 before installing; with both installed, Arduino may pic
 \`U8X8_WITH_CLUT\` is defined in \`src/clib/u8x8.h\`: sketches need no build flags.
 Color examples: File > Examples > U8g2_clut > full_buffer > Clut*.
 
+A color display is black and white (white on black) until the sketch gives it a color table:
+
+\`\`\`
+static clut_t clut;                                  // 16 color pairs, 64 bytes, in ram
+u8g2_SetClutTable(u8g2.getU8g2(), clut);             // not copied: the table must stay valid
+u8g2_SetClutDefaultColors(u8g2.getU8g2());           // optional: the 16-color VGA palette
+u8g2_SetClutColor(u8g2.getU8g2(), 1, 0xFFFFFF, 0x0000FF);  // entry 1: white on blue
+\`\`\`
+
+Without a table, \`u8g2_SetClutColor()\` does nothing. A table that never changes can be const, in flash.
+
 \`MUI_U8G2_HIRES\` is defined in \`src/clib/mui_u8g2.h\`, as in the MicroPython firmware: the 8 bit x and y
 of a mui field are multiplied by 2, 4 or 8 on a display of 255 pixels or more, so mui can use the
 whole display. On displays smaller than 255 pixels, nothing changes. mui sketches written for the

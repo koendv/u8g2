@@ -105,6 +105,9 @@ void u8x8_SetupDefaults(u8x8_t *u8x8)
     u8x8->bus_clock = 0;		/* issue 769 */
     u8x8->i2c_address = 255;
     u8x8->debounce_default_pin_state = 255;	/* assume all low active buttons */
+#ifdef U8X8_WITH_CLUT
+    u8x8->clut = NULL;		/* no color lookup table: white on black, until u8g2_SetClutTable() */
+#endif
   
 #ifdef U8X8_USE_PINS 
   {

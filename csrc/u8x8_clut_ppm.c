@@ -45,8 +45,8 @@ static void u8x8_clut_to_rgb888(uint16_t c, uint8_t native_bpp, uint8_t *rgb)
 void u8g2_WriteBufferPPM(u8g2_t *u8g2, void (*out)(const char *s))
 {
   u8x8_t *u8x8 = u8g2_GetU8x8(u8g2);
-  const uint8_t *tile_clut_map = u8x8->tile_clut_map;
-  const uint16_t *clut = &u8x8->clut[0][0];
+  const uint8_t *tile_clut_map = u8x8->clut ? u8x8->tile_clut_map : NULL;	/* without a table: no map, white on black, as the display */
+  const uint16_t *clut = u8x8->clut ? &u8x8->clut[0][0] : u8x8_clut_bw(u8x8);
   uint8_t tile_width = u8g2_GetBufferTileWidth(u8g2);
   uint8_t tile_height = u8g2_GetBufferTileHeight(u8g2);
   uint8_t tile_row = u8g2_GetBufferCurrTileRow(u8g2);  /* first tile row of the buffer */

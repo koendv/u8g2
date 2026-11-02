@@ -39,27 +39,48 @@ static uint16_t u8x8_clut_quantize(uint32_t rgb888, uint8_t native_bpp)
   return 0;
 }
 
-/* set default vga palette */
-void u8x8_clut_set_default_palette(u8x8_t *u8x8, uint8_t native_bpp)
-{
-  uint8_t i;
+/* without a table: white on black. {foreground, background} */
+static const uint16_t u8x8_clut_bw_rgb444[2] = { 0x0FFF, 0x0000 };
+static const uint16_t u8x8_clut_bw_rgb565[2] = { 0xFFFF, 0x0000 };
 
-  u8x8->clut_native_bpp = native_bpp;
-  for ( i = 0; i < U8X8_CLUT_ENTRY_CNT; i++ )
-  {
-    u8x8->clut[i][0] = u8x8_clut_quantize(u8x8_clut_default_table[i][0], native_bpp);
-    u8x8->clut[i][1] = u8x8_clut_quantize(u8x8_clut_default_table[i][1], native_bpp);
-  }
+const uint16_t *u8x8_clut_bw(const u8x8_t *u8x8)
+{
+  if ( u8x8->clut_native_bpp == U8X8_CLUT_NATIVE_RGB444 )
+    return u8x8_clut_bw_rgb444;
+  return u8x8_clut_bw_rgb565;
 }
 
-/* set a single foregound/background color pair from rgb888 */
+/* color drivers, at setup. the table is not touched: an application can set it before begin() */
+void u8x8_clut_set_native_bpp(u8x8_t *u8x8, uint8_t native_bpp)
+{
+  u8x8->clut_native_bpp = native_bpp;
+}
+
+/* use table as color lookup table. not copied. NULL: white on black */
+void u8g2_SetClutTable(u8g2_t *u8g2, const clut_t table)
+{
+  u8g2_GetU8x8(u8g2)->clut = table;
+}
+
+/* set a single foregound/background color pair from rgb888. the table must be in ram */
 void u8g2_SetClutColor(u8g2_t *u8g2, uint8_t idx, uint32_t fg, uint32_t bg)
 {
   u8x8_t *u8x8 = u8g2_GetU8x8(u8g2);
-  if ( idx >= U8X8_CLUT_ENTRY_CNT )
+  uint16_t (*clut)[2] = (uint16_t (*)[2])u8x8->clut;	/* a table in flash is the caller's mistake */
+
+  if ( idx >= U8X8_CLUT_ENTRY_CNT || clut == NULL )
     return;
-  u8x8->clut[idx][0] = u8x8_clut_quantize(fg, u8x8->clut_native_bpp);
-  u8x8->clut[idx][1] = u8x8_clut_quantize(bg, u8x8->clut_native_bpp);
+  clut[idx][0] = u8x8_clut_quantize(fg, u8x8->clut_native_bpp);
+  clut[idx][1] = u8x8_clut_quantize(bg, u8x8->clut_native_bpp);
+}
+
+/* set the classic vga palette in the table in use. the table must be in ram */
+void u8g2_SetClutDefaultColors(u8g2_t *u8g2)
+{
+  uint8_t i;
+
+  for ( i = 0; i < U8X8_CLUT_ENTRY_CNT; i++ )
+    u8g2_SetClutColor(u8g2, i, u8x8_clut_default_table[i][0], u8x8_clut_default_table[i][1]);
 }
 
 void u8g2_SetClutRegion(u8g2_t *u8g2, uint8_t tx, uint8_t ty, uint8_t tw, uint8_t th, uint8_t idx)
@@ -98,8 +119,8 @@ void u8g2_SetClutMap(u8g2_t *u8g2, uint8_t *map)
 void u8x8_clut_stream_rgb565(u8x8_t *u8x8,
     const uint8_t *run_tile_ptr, uint8_t cnt, uint16_t first_tile_number)
 {
-  const uint8_t *tile_clut_map = u8x8->tile_clut_map;
-  const uint16_t *clut = &u8x8->clut[0][0];
+  const uint8_t *tile_clut_map = u8x8->clut ? u8x8->tile_clut_map : NULL;	/* without a table: no map, white on black */
+  const uint16_t *clut = u8x8->clut ? &u8x8->clut[0][0] : u8x8_clut_bw(u8x8);
   uint8_t buf[254]; /* 1 pixel -> 2 bytes, 254 = multiple of 2 */
   uint8_t pos;
   uint8_t row, i;
@@ -139,8 +160,8 @@ void u8x8_clut_stream_rgb565(u8x8_t *u8x8,
 void u8x8_clut_stream_rgb444(u8x8_t *u8x8,
     const uint8_t *run_tile_ptr, uint8_t cnt, uint16_t first_tile_number)
 {
-  const uint8_t *tile_clut_map = u8x8->tile_clut_map;
-  const uint16_t *clut = &u8x8->clut[0][0];
+  const uint8_t *tile_clut_map = u8x8->clut ? u8x8->tile_clut_map : NULL;	/* without a table: no map, white on black */
+  const uint16_t *clut = u8x8->clut ? &u8x8->clut[0][0] : u8x8_clut_bw(u8x8);
   uint8_t buf[252]; /* 2 pixel -> 3 bytes, 252 = multiple of 3 */
   uint8_t pos;
   uint8_t row, i;

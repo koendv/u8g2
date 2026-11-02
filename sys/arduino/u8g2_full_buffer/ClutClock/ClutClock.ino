@@ -86,6 +86,7 @@ static int16_t cx, cy;          // dial center, center of display
 static uint32_t startSecs = 0;  // random start time, seconds since midnight
 
 static uint8_t tile_clut_map[u8x8_clut_map_size(MAX_PIXEL_WIDTH, MAX_PIXEL_HEIGHT)];
+static clut_t clut;  // color lookup table in RAM: without a table, white on black
 
 // smoothly changing color
 
@@ -257,6 +258,7 @@ void setup() {
   analogWrite(PIN_BL, 128);  // backlight 50%
 
   u8g2_SetClutMap(u8g2.getU8g2(), tile_clut_map);
+  u8g2_SetClutTable(u8g2.getU8g2(), clut);
   u8g2.setBusClock(SPI_FREQ);
 
 #ifdef ARDUINO_ARCH_ESP32

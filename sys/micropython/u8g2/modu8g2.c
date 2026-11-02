@@ -266,18 +266,25 @@ static mp_obj_t u8g2_init(size_t n_args, const mp_obj_t *pos_args, mp_map_t *kw_
     bool is_color = mp_u8g2.u8x8.clut_native_bpp != 0;
     size_t buf_size = disp->tile_width * 8 * disp->tile_height;
     size_t map_size = is_color ? (disp->tile_width * disp->tile_height + 1) / 2 : 0;
+    // color: the clut table after the buffer (buf_size is a multiple of 8: aligned), then the map
+    size_t clut_size = is_color ? sizeof(clut_t) : 0;
     MP_STATE_VM(u8g2_mem) = NULL; // the previous block, if any, can be collected
-    uint8_t *mem = m_new(uint8_t, buf_size + map_size);
-    memset(mem, 0, buf_size + map_size);
+    uint8_t *mem = m_new(uint8_t, buf_size + clut_size + map_size);
+    memset(mem, 0, buf_size + clut_size + map_size);
     MP_STATE_VM(u8g2_mem) = mem;
     u8g2_SetupBuffer(&mp_u8g2, mem, disp->tile_height, disp->ll_hvline, u8g2_rotations[rotation]);
     // monochrome display: no map. this also drops the map of a previous color display
-    u8g2_clut_map = is_color ? mem + buf_size : NULL;
+    u8g2_clut_map = is_color ? mem + buf_size + clut_size : NULL;
     u8g2_SetClutMap(&mp_u8g2, u8g2_clut_map);
+    // color: the clut table in the heap block, vga palette. set_clut_color() changes it
+    if (is_color) {
+        u8g2_SetClutTable(&mp_u8g2, (const uint16_t (*)[2])(void *)(mem + buf_size));
+        u8g2_SetClutDefaultColors(&mp_u8g2);
+    }
     u8g2_is_color = is_color;
     u8g2_InitDisplay(&mp_u8g2);
 
-    // known state: default palette (set by setup), clut index 0 everywhere, empty screen
+    // known state: vga palette, clut index 0 everywhere, empty screen
     u8g2_SetMaxClipWindow(&mp_u8g2);
     u8g2_SetDrawColor(&mp_u8g2, 1);
     u8g2_SetFontMode(&mp_u8g2, 0);

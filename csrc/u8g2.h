@@ -2157,8 +2157,20 @@ void u8g2_SetupBuffer_Utf8(u8g2_t *u8g2, const u8g2_cb_t *u8g2_cb);
 /* u8x8_clut.c */
 /* clut - color lookup table */
 
-/* set clut entry 'idx'. fg and bg are 24-bit rgb888 */
+/* use table as color lookup table. the table is not copied: it stays in use
+   and must stay valid. native format of the display, rgb444 or rgb565.
+   a table in ram can be changed with u8g2_SetClutColor(); a const table in
+   flash cannot. without a table (NULL, the default), the display is white
+   on black, whatever the tile color map. */
+void u8g2_SetClutTable(u8g2_t *u8g2, const clut_t table);
+
+/* set clut entry 'idx' of the table in use. fg and bg are 24-bit rgb888.
+   does nothing without a table. the table must be in ram. */
 void u8g2_SetClutColor(u8g2_t *u8g2, uint8_t idx, uint32_t fg, uint32_t bg);
+
+/* set all 16 entries of the table in use to the classic vga/cga palette.
+   does nothing without a table. the table must be in ram. */
+void u8g2_SetClutDefaultColors(u8g2_t *u8g2);
 
 /* set color index of tw by th tiles, beginning at tile (tx, ty) */
 void u8g2_SetClutRegion(u8g2_t *u8g2, uint8_t tx, uint8_t ty, uint8_t tw, uint8_t th, uint8_t idx);

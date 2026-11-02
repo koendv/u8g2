@@ -1,3 +1,16 @@
+## u8g2 with color: the clut branch
+
+This fork adds color displays (ST7789, ILI9341, GC9A01) to [u8g2](https://github.com/olikraus/u8g2/wiki) and [mui](https://github.com/olikraus/u8g2/wiki/muimanual), while keeping the memory use of a black and white display.
+u8g2 draws in a 1 bpp frame buffer; each 8x8 tile gets one of 16 foreground/background color pairs, added by the display driver.
+
+- [MicroPython](https://micropython.org/) firmware, demos and the color functions: [sys/micropython](sys/micropython/README.md)
+- firmware for the boards and the [Arduino](https://www.arduino.cc/) library `U8g2_clut.zip`: [micropython-u8g2 releases](https://github.com/koendv/micropython-u8g2/releases)
+- the same color scheme in hardware, a Direct Memory Access (DMA) engine for Arm microcontrollers: [clut-dma](https://github.com/koendv/clut-dma)
+
+The rest of this page is the README of [U8g2](https://github.com/olikraus/u8g2) by olikraus.
+
+---
+
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/olikraus/u8g2) 
 
 ![https://raw.githubusercontent.com/wiki/olikraus/u8g2/ref/u8g2_logo_transparent_orange.png](https://raw.githubusercontent.com/wiki/olikraus/u8g2/ref/u8g2_logo_transparent_orange.png) 

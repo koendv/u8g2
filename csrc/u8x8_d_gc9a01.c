@@ -285,7 +285,7 @@ static uint8_t u8x8_d_gc9a01_240x240_generic(u8x8_t *u8x8, uint8_t msg, uint8_t 
   {
     case U8X8_MSG_DISPLAY_SETUP_MEMORY:
       u8x8_d_helper_display_setup_memory(u8x8, &u8x8_gc9a01_240x240_display_info);
-      u8x8_clut_set_default_palette(u8x8, U8X8_CLUT_NATIVE_RGB565);
+      u8x8_clut_set_native_bpp(u8x8, U8X8_CLUT_NATIVE_RGB565);
       break;
 
     case U8X8_MSG_DISPLAY_INIT:

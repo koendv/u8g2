@@ -370,7 +370,7 @@ struct u8x8_struct
   uint8_t debounce_state;
   uint8_t debounce_result_msg;	/* result msg or event after debounce */
 #ifdef U8X8_WITH_CLUT
-  clut_t clut;			/* color lookup table: 16 entries, [idx][0]=foreground, [idx][1]=background, native rgb444 or rgb565 */
+  const uint16_t (*clut)[2];	/* color lookup table, a clut_t set by u8g2_SetClutTable(), NULL: white on black. 16 entries, [idx][0]=foreground, [idx][1]=background, native rgb444 or rgb565 */
   uint8_t clut_native_bpp;	/* native bit depth of clut entries: U8X8_CLUT_NATIVE_RGB444 or U8X8_CLUT_NATIVE_RGB565 */
   uint8_t *tile_clut_map;	/* optional per-tile clut index map, size via u8x8_clut_map_size(), NULL if unused */
 #endif

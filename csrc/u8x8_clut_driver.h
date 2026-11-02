@@ -29,8 +29,11 @@ static inline uint8_t u8x8_clut_get_nibble(const uint8_t *map, uint16_t index)
   return (index & 1) ? (uint8_t)(b >> 4) : (uint8_t)(b & 0x0f);
 }
 
-/* set default palette, 16-color vga */
-void u8x8_clut_set_default_palette(u8x8_t *u8x8, uint8_t native_bpp);
+/* color drivers, at setup: native format of the clut entries, rgb444 or rgb565 */
+void u8x8_clut_set_native_bpp(u8x8_t *u8x8, uint8_t native_bpp);
+
+/* without a table: white on black, native format */
+const uint16_t *u8x8_clut_bw(const u8x8_t *u8x8);
 
 /* send rgb565 to display */
 void u8x8_clut_stream_rgb565(u8x8_t *u8x8,

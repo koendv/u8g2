@@ -158,6 +158,33 @@ u8g2.init(i2c=i2c, addr=0x3d, display=u8g2.SSD1306_I2C_128X64_NONAME)
 u8g2.init(spi, cs=Pin("A4"), dc=Pin("B1"), rst=Pin("B2"), display=u8g2.SSD1306_128X64_NONAME)
 ```
 
+### color
+
+A color display is black and white (white on black) unless a color table is created.
+The color table (clut) has 16 foreground/background color pairs;
+the tile map gives each 8x8 tile a foreground/background color pair.
+
+In MicroPython, `u8g2.init()` creates the color table and the tile map for a color display.
+The table starts with the 16-color VGA palette; every tile uses entry 0, white on black.
+
+```
+u8g2.set_clut_color(1, 0xFFFFFF, 0x0000FF)  # entry 1: white on blue
+u8g2.set_clut_region(0, 0, 30, 4, 1)        # top 32 pixel rows use entry 1
+u8g2.send_buffer()
+```
+
+In C and Arduino, u8g2 does not allocate the color table; the application does, as with the tile map.
+Without `u8g2_SetClutTable()`, the display is black and white and `u8g2_SetClutColor()` does nothing.
+
+```
+static clut_t clut;                                        // 16 color pairs, 64 bytes, in ram
+u8g2_SetClutTable(u8g2.getU8g2(), clut);                   // not copied: the table must stay valid
+u8g2_SetClutDefaultColors(u8g2.getU8g2());                 // optional: the 16-color VGA palette
+u8g2_SetClutColor(u8g2.getU8g2(), 1, 0xFFFFFF, 0x0000FF);  // entry 1: white on blue
+```
+
+A table that never changes can be const, in flash; `u8g2_SetClutColor()` and `u8g2_SetClutDefaultColors()` need a table in ram.
+
 ### touch panel
 
 Two drivers:
