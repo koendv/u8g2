@@ -115,7 +115,11 @@ void u8g2_SetClutMap(u8g2_t *u8g2, uint8_t *map)
   u8g2_GetU8x8(u8g2)->tile_clut_map = map;
 }
 
-/* send a run of tiles to rgb565 display */
+/* send a run of tiles to rgb565 display.
+   weak: an application can replace this function with a dma engine that expands the colors in hardware */
+#if defined(__GNUC__) && !defined(_WIN32)
+# pragma weak  u8x8_clut_stream_rgb565
+#endif
 void u8x8_clut_stream_rgb565(u8x8_t *u8x8,
     const uint8_t *run_tile_ptr, uint8_t cnt, uint16_t first_tile_number)
 {
@@ -156,7 +160,11 @@ void u8x8_clut_stream_rgb565(u8x8_t *u8x8,
     u8x8_cad_SendData(u8x8, pos, buf);
 }
 
-/* send a run of tiles to rgb444 display */
+/* send a run of tiles to rgb444 display.
+   weak: an application can replace this function with a dma engine that expands the colors in hardware */
+#if defined(__GNUC__) && !defined(_WIN32)
+# pragma weak  u8x8_clut_stream_rgb444
+#endif
 void u8x8_clut_stream_rgb444(u8x8_t *u8x8,
     const uint8_t *run_tile_ptr, uint8_t cnt, uint16_t first_tile_number)
 {
