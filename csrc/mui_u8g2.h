@@ -74,6 +74,14 @@
 */
 //#define MUI_U8G2_HIRES
 
+/*
+  define MUI_U8G2_GRID n to multiply the x and y position of MUI
+  fields by n, whatever the size of the display: with 8, the positions of
+  the forms are in units of 8x8 tiles. Widths given in the arg of a field
+  stay in pixels. If MUI_U8G2_HIRES is defined too, MUI_U8G2_GRID is used.
+*/
+//#define MUI_U8G2_GRID 8
+
 /*==========================================*/
 /* C++ compatible */
 
